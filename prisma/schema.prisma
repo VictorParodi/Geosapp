@@ -9,3 +9,74 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Predio {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  numeroPredial  Int
+  avaluo         Int
+  nombre         String
+  departamento   String
+  municipio      String
+  propietarios   Propietario[]
+  construcciones Construccion[]
+  tieneTerreno   Boolean        @default(false)
+  terreno        Terreno?
+}
+
+model Propietario {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tipoPropietario String
+  tipoDocumento   String
+  numeroDocumento Int
+  nombre          String
+  apellido        String
+  direccion       String
+  telefono        Int
+  email           String?
+  predioId        String
+  predio          Predio  @relation(fields: [predioId], references: [id])
+}
+
+enum TIPO_TERRENO {
+  RURAL
+  URBANO
+}
+
+model Terreno {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  area                Float
+  valorComercial      Int
+  cercaFuenteAgua     Boolean      @default(false)
+  tipo                TIPO_TERRENO @default(RURAL)
+  tieneConstrucciones Boolean      @default(false)
+  predioId            String       @unique
+  predio              Predio       @relation(fields: [predioId], references: [id])
+}
+
+enum TIPO_CONSTRUCCION {
+  INDUSTRIAL
+  COMERCIAL
+  RESIDENCIAL
+}
+
+model Construccion {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  numeroPisos Int
+  area        Float
+  tipo        TIPO_CONSTRUCCION @default(INDUSTRIAL)
+  direccion   String
+  predioId    String            @unique
+  predio      Predio            @relation(fields: [predioId], references: [id])
+}
