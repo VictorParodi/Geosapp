@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "TIPO_PROPIETARIO" AS ENUM ('PERSONA_NATURAL', 'PERSONA_JURIDICA');
+
+-- CreateEnum
 CREATE TYPE "TIPO_TERRENO" AS ENUM ('RURAL', 'URBANO');
 
 -- CreateEnum
@@ -24,7 +27,7 @@ CREATE TABLE "Propietario" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "tipoPropietario" TEXT NOT NULL,
+    "tipoPropietario" "TIPO_PROPIETARIO" NOT NULL DEFAULT 'PERSONA_NATURAL',
     "tipoDocumento" TEXT NOT NULL,
     "numeroDocumento" INTEGER NOT NULL,
     "nombre" TEXT NOT NULL,

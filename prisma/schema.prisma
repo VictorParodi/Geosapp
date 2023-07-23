@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -15,7 +12,7 @@ model Predio {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  numeroPredial  Int
+  numeroPredial  String         @unique
   avaluo         Int
   nombre         String
   departamento   String
@@ -26,21 +23,26 @@ model Predio {
   terreno        Terreno?
 }
 
+enum TIPO_PROPIETARIO {
+  PERSONA_NATURAL
+  PERSONA_JURIDICA
+}
+
 model Propietario {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  tipoPropietario String
+  tipoPropietario TIPO_PROPIETARIO @default(PERSONA_NATURAL)
   tipoDocumento   String
   numeroDocumento Int
   nombre          String
   apellido        String
   direccion       String
-  telefono        Int
+  telefono        String
   email           String?
   predioId        String
-  predio          Predio  @relation(fields: [predioId], references: [id])
+  predio          Predio           @relation(fields: [predioId], references: [id])
 }
 
 enum TIPO_TERRENO {
@@ -53,7 +55,7 @@ model Terreno {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  area                Float
+  area                Int
   valorComercial      Int
   cercaFuenteAgua     Boolean      @default(false)
   tipo                TIPO_TERRENO @default(RURAL)
@@ -74,7 +76,7 @@ model Construccion {
   updatedAt DateTime @updatedAt
 
   numeroPisos Int
-  area        Float
+  area        Int
   tipo        TIPO_CONSTRUCCION @default(INDUSTRIAL)
   direccion   String
   predioId    String            @unique
