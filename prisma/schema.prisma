@@ -35,7 +35,7 @@ model Propietario {
 
   tipoPropietario TIPO_PROPIETARIO @default(PERSONA_NATURAL)
   tipoDocumento   String
-  numeroDocumento Int
+  numeroDocumento String           @unique
   nombre          String
   apellido        String
   direccion       String
@@ -75,7 +75,7 @@ model Construccion {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  numeroPisos Int
+  numeroPisos String
   area        Int
   tipo        TIPO_CONSTRUCCION @default(INDUSTRIAL)
   direccion   String

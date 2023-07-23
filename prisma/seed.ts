@@ -15,7 +15,7 @@ async function main() {
 					{
 						tipoPropietario: "PERSONA_NATURAL",
 						tipoDocumento: "CC",
-						numeroDocumento: 1000900800,
+						numeroDocumento: "1000900800",
 						nombre: "John",
 						apellido: "Doe",
 						direccion: "Calle Falsa 123",
@@ -26,7 +26,7 @@ async function main() {
 			construcciones: {
 				create: [
 					{
-						numeroPisos: 3,
+						numeroPisos: "3",
 						area: 200,
 						tipo: "RESIDENCIAL",
 						direccion: "Calle Falsa 012",
