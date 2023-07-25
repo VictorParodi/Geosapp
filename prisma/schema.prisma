@@ -41,8 +41,8 @@ model Propietario {
   direccion       String
   telefono        String
   email           String?
-  predioId        String
-  predio          Predio           @relation(fields: [predioId], references: [id])
+  predioId        String?
+  predio          Predio?          @relation(fields: [predioId], references: [id])
 }
 
 enum TIPO_TERRENO {
@@ -55,13 +55,13 @@ model Terreno {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  area                Int
-  valorComercial      Int
-  cercaFuenteAgua     Boolean      @default(false)
-  tipo                TIPO_TERRENO @default(RURAL)
-  tieneConstrucciones Boolean      @default(false)
-  predioId            String       @unique
-  predio              Predio       @relation(fields: [predioId], references: [id])
+  area                Int?
+  valorComercial      Int?
+  cercaFuenteAgua     Boolean?      @default(false)
+  tipo                TIPO_TERRENO? @default(RURAL)
+  tieneConstrucciones Boolean?      @default(false)
+  predioId            String?       @unique
+  predio              Predio?       @relation(fields: [predioId], references: [id])
 }
 
 enum TIPO_CONSTRUCCION {
@@ -75,10 +75,10 @@ model Construccion {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  numeroPisos String
-  area        Int
-  tipo        TIPO_CONSTRUCCION @default(INDUSTRIAL)
-  direccion   String
-  predioId    String            @unique
-  predio      Predio            @relation(fields: [predioId], references: [id])
+  numeroPisos String?
+  area        Int?
+  tipo        TIPO_CONSTRUCCION? @default(INDUSTRIAL)
+  direccion   String?
+  predioId    String?            @unique
+  predio      Predio?            @relation(fields: [predioId], references: [id])
 }

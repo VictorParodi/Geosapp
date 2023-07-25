@@ -1,6 +1,8 @@
+"use client";
 import { FC } from "react";
 import Link from "next/link";
 import type { PredioItemProps } from "@/utils/types";
+import { borrarPredio } from "@/lib/api";
 
 const PredioItem: FC<PredioItemProps> = ({ predio }) => {
 	return (
@@ -10,7 +12,12 @@ const PredioItem: FC<PredioItemProps> = ({ predio }) => {
 			<p>{ predio.departamento }</p>
 			<div>
 				<Link className='uppercase bg-orange-300 py-1 px-3 mr-5 rounded-md' href={`/predio/${predio.id}`}>ver</Link>
-				<button className='uppercase bg-red-500 py-1 px-3 rounded-md'>eliminar</button>
+				<button
+					className='uppercase bg-red-500 py-1 px-3 rounded-md'
+					onClick={() => borrarPredio(predio.id)}
+				>
+					eliminar
+				</button>
 			</div>
 		</li>
 	);
