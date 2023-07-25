@@ -2,10 +2,10 @@ import { db } from "@/lib/db";
 
 async function main() {
 	const newPredio = await db.predio.upsert({
-		where: { numeroPredial: "0023" },
+		where: { numeroPredial: "0025" },
 		update: {},
 		create: {
-			numeroPredial: "0023",
+			numeroPredial: "0025",
 			avaluo: 150000000,
 			nombre: "Predio tres",
 			departamento: "Antioquia",
@@ -15,7 +15,7 @@ async function main() {
 					{
 						tipoPropietario: "PERSONA_NATURAL",
 						tipoDocumento: "CC",
-						numeroDocumento: "1000900800",
+						numeroDocumento: "1000900803",
 						nombre: "John",
 						apellido: "Doe",
 						direccion: "Calle Falsa 123",

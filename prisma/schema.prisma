@@ -35,7 +35,7 @@ model Propietario {
 
   tipoPropietario TIPO_PROPIETARIO @default(PERSONA_NATURAL)
   tipoDocumento   String
-  numeroDocumento String           @unique
+  numeroDocumento String
   nombre          String
   apellido        String
   direccion       String
